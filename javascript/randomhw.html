@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Item Return Page</h2>
+<button onclick="checkReturn()">Check Return</button>
+<p id="result"></p>
+
+<script>
+
+let order = {
+  itemName: "Laptop",
+  isDelivered: true,
+  daysSinceDelivery: 5
+};
+
+function checkReturn() {
+  
+  let hasItemName = "itemName" in order;
+
+
+  let message = (order.isDelivered && order.daysSinceDelivery <= 7) 
+                  ? "Eligible for Return" 
+                  : "Return Period Expired";
+
+
+  delete order.daysSinceDelivery;
+
+ 
+  document.getElementById("result").innerHTML = `
+    <b>Message:</b> ${message} <br>
+    <b>Item Name exists?</b> ${hasItemName} <br>
+    <b>Order Object after deletion:</b> ${JSON.stringify(order)}
+  `;
+}
+</script>
+</body>
+</html>
