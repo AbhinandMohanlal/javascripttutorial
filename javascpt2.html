@@ -3,14 +3,34 @@
 <html>
 <body>
 
-<h2>JavaScript Objects</h2>
+<h2>JavaScript Math</h2>
 
+<p>Math.floor(Math.random() * 100) + 1) returns a random integer between 1 and 100:</p>
+<p id="demo"></p>
+<p>simulated user score:</p>
+<p id="userScore"></p>
+<p>changed to Number:</p>
+<p id="userScoreNum"></p>
+<p>Difference between random number and user score:</p>
+<p id="scoreDiff"></p>
+<p>rounded squareroot of user score:</p>
+<p id="userScoreSqrt"></p>
+<p>Value of PI:</p>
+<p id="piValue"></p>
 <script>
-let person = { 
-    name: 'Kevin',
-    age: 20
-};
-console.log(typeof person); 
+document.getElementById("demo").innerHTML =
+Math.floor(Math.random() * 100) + 1;
+let userscrstr="75";
+document.getElementById("userScore").innerHTML = userscrstr;
+let userscr=Number(userscrstr);
+document.getElementById("userScoreNum").innerHTML = userscr;
+document.getElementById("scoreDiff").innerHTML = Math.abs(userscr - Number(document.getElementById("demo").innerHTML));
+document.getElementById("userScoreSqrt").innerHTML = Math.round(Math.sqrt(userscr));
+let pivalue=Math.PI;
+document.getElementById("piValue").innerHTML = pivalue;
+
+
 </script>
+
 </body>
 </html>
