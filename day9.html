@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Filtering</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 120px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Comment Filter</h1>
+
+    <textarea id="commentInput" placeholder="Type your comment here..."></textarea>
+    <br>
+    <button onclick="processComment()">Filter</button>
+
+    <pre id="result"></pre>
+
+    <script>
+        function filterComment(comment) {
+            
+            const bannedWords = ["bad", "ugly", "stupid"];
+            const bannedRegex = new RegExp(`\\b(${bannedWords.join("|")})\\b`, "gi");
+
+            const cleanedComment = comment.replace(bannedRegex, "***");
+
+           
+            const numberMatches = comment.match(/\b\d+(\.\d+)?\b/g);
+            const numberCount = numberMatches ? numberMatches.length : 0;
+
+           
+            const capitalizedWords = comment.match(/\b[A-Z][a-z]*\b/g);
+            const capitalizedCount = capitalizedWords ? capitalizedWords.length : 0;
+
+            
+            return `
+Cleaned Comment: ${cleanedComment}
+Number Count: ${numberCount}
+Capitalized Word Count: ${capitalizedCount}
+`;
+        }
+
+        function processComment() {
+            const input = document.getElementById("commentInput").value;
+            const result = filterComment(input);
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+
+</body>
+</html>
