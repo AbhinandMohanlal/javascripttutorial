@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function Feedback</title>
+</head>
+<body>
+    <script>
+        const jsonString = '{"feedback": "I just wanted to say THANK you for your support!"}';
+
+        try {
+            const data = JSON.parse(jsonString);
+
+            const containsThank = (feedback) => {
+                return /thank/i.test(feedback);
+            };
+
+            if (containsThank(data.feedback)) {
+                console.log("Positive feedback received");
+            } else {
+                console.log("Feedback noted");
+            }
+
+        } catch (error) {
+            console.error("Invalid JSON:", error.message);
+        }
+    </script>
+</body>
+</html>
